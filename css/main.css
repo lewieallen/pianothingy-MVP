@@ -1,3 +1,9 @@
+body{
+  margin: 0;
+  padding: 50px 25px;
+  background-color: #898989;
+}
+
 h1 {
     color: red;
 }
