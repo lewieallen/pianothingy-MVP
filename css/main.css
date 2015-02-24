@@ -1,18 +1,33 @@
 body{
   margin: 0;
   padding: 50px 25px;
-  background-color: #898989;
+  background-color: green;
+  font-family: "helvetica";
 }
 
 h1 {
     color: #000;
+    text-align: center;
 }
 .canvas-wrapper {
+
     display: block;
     box-sizing: border-box;
-    margin: auto;
+    border: 2px dashed #898989;
+    margin: 0 auto;
+    background-color: #fff;
 }
 canvas {
     display: block;
     margin: auto;
+    width: 80%;
+}
+
+.lead{
+  font-size: 28px;
+}
+
+.container{
+  width:80%;
+  margin: 0 auto;
 }
