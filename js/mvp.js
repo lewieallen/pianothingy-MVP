@@ -24,7 +24,7 @@ var renderer = new Vex.Flow.Renderer(
     // ** For more information see: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
 var ctx = renderer.getContext()
     // Alternatively renderer.ctx produces the same object.
-var stave = new Vex.Flow.Stave(50, 100, width);
+var stave = new Vex.Flow.Stave(50, -10, width);
     // Stave(x-pos, y-pos, width);
         // Drawn in the same directions as SVG (top-left to bottom,right)
 
@@ -65,8 +65,8 @@ notes = [
     }),
         // quarter rest
     new Vex.Flow.StaveNote({
-        keys: ["b/4"],
-        duration: "qr"
+        keys: ["e/4", "b/4"],
+        duration: "q"
             // NOTES this is a quarter rest
                 // it is given a glyph sub-property 
                 // position: "b/4"
