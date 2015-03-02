@@ -276,10 +276,11 @@
                     'notesOffset': 0
                 }
             ];
-
+            // 0 is middle C on the piano
+            // first vlaue passed is the length of note. 
             var main = [
-                [6, -7, -5],
-                [6, -7, -5],
+                [12, -7, -5],
+                [12, -7, -5],
                 [6, -7, -5],
                 [6, -7, -5],
                 [6, -7, -5],
@@ -491,22 +492,22 @@
         var shouldAnimate = true,
             $piano = $('#piano'),
             W = $piano.width(),
-            H = 500,
-            $canvas = $('<canvas>', {
-                css: {
-                    position: 'absolute',
-                    top: ($piano.offset().top + $piano.outerHeight() - 1) + 'px',
-                    left: '50%',
-                    marginLeft: Math.floor(-W/2) + 'px', // need to figure this out...
-                    width: W,
-                    height: H
-                }
-            })
-            .attr('width', W)
-            .attr('height', H)
-            .prependTo('body'),
-            canvas = $canvas.get(0),
-            ctx = canvas.getContext('2d');
+            H = 500;
+            // $canvas = $('<canvas>', {
+            //     css: {
+            //         position: 'absolute',
+            //         top: ($piano.offset().top + $piano.outerHeight() - 1) + 'px',
+            //         left: '50%',
+            //         marginLeft: Math.floor(-W/2) + 'px', // need to figure this out...
+            //         width: W,
+            //         height: H
+            //     }
+            // })
+            // .attr('width', W)
+            // .attr('height', H)
+            // .prependTo('body'),
+            // canvas = $canvas.get(0),
+            // ctx = canvas.getContext('2d');
 
         function choice(x) {
             return x[Math.floor(Math.random()*x.length)];
@@ -670,36 +671,5 @@
     }
 
 
-
-    // the below code was a failed experiment to support iOS...
-
-    // //
-    // // Generate files for dl...
-    // //
-
-    // function generateFilesForDL() {
-    //     // backup solution for iOS... since they won't play my files :'(
-    //     // add audio elts to page and then download them all!
-    //     // https://addons.mozilla.org/en-US/firefox/addon/downthemall/?src=search
-
-    //     for (var i=0; i<5; i++) {
-    //         var dataURI = Notes.getDataURI(i);
-    //         $('body').prepend("<br><br>");
-    //         $('<audio>', {controls: 'controls'})
-    //             .append('Note ' + i)
-    //             .append($('<source>', {
-    //                 src: dataURI,
-    //                 type: 'audio/wav'
-    //             }))
-    //             .prependTo('body');
-    //         $('body').prepend(i + ": ");
-    //     }
-
-    //     $('body').prepend("<br><br>");
-    //     $('<audio>', {controls: 'controls', src: 'note.caf', type: 'audio/wav'}).prependTo('body');
-    //     $('body').prepend("note: ");
-
-    // }
-    // generateFilesForDL();
 
 })();
