@@ -10,7 +10,6 @@ h1 {
     text-align: center;
 }
 .canvas-wrapper {
-
     display: block;
     box-sizing: border-box;
     border: 2px dashed #898989;
@@ -30,4 +29,16 @@ canvas {
 .container{
   width:80%;
   margin: 0 auto;
+}
+
+.play {
+  font-size: 50px;
+  text-align: center;
+  background-color: #fff;
+  display: block;
+  margin: 0.4em auto;
+  width: 4em;
+}
+.play:hover {
+  cursor: pointer;
 }
