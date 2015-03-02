@@ -161,7 +161,8 @@
         /*]*/ 221: 18, // f#
         /*enter*/ 13: 19 // g
     };
-    var notesShift = -12;
+    // Removing interaction
+    // var notesShift = -12;
     var downKeys = {};
 
     function isModifierKey(evt) {
@@ -189,24 +190,6 @@
     }).keyup(function(evt) {
         delete downKeys[evt.keyCode];
     });
-
-
-    //
-    // Piano colors
-    //
-
-    var colors = 'f33 33f 3f3 ff3 f3f 3ff'.split(' '),
-        curColor = 0;
-
-    function colorHandler(evt) {
-        if (evt.type === 'click' || (evt.keyCode == 67 && !isModifierKey(evt))) {
-            if (++curColor >= colors.length) curColor = 0;
-            document.getElementById('piano').style.backgroundColor = '#' + colors[curColor];
-        }
-    }
-
-    $(window).keyup(colorHandler);
-    $('.toggle-color').click(colorHandler);
 
     //
     // Help controls
@@ -279,8 +262,8 @@
             // 0 is middle C on the piano
             // first vlaue passed is the length of note. 
             var main = [
-                [12, -7, -5],
-                [12, -7, -5],
+                [6, -7, -5],
+                [6, -7, -5],
                 [6, -7, -5],
                 [6, -7, -5],
                 [6, -7, -5],
@@ -493,21 +476,22 @@
             $piano = $('#piano'),
             W = $piano.width(),
             H = 500;
-            // $canvas = $('<canvas>', {
-            //     css: {
-            //         position: 'absolute',
-            //         top: ($piano.offset().top + $piano.outerHeight() - 1) + 'px',
-            //         left: '50%',
-            //         marginLeft: Math.floor(-W/2) + 'px', // need to figure this out...
-            //         width: W,
-            //         height: H
-            //     }
-            // })
-            // .attr('width', W)
-            // .attr('height', H)
-            // .prependTo('body'),
-            // canvas = $canvas.get(0),
-            // ctx = canvas.getContext('2d');
+            $canvas = $('<canvas>', {
+                css: {
+                    position: 'absolute',
+                    top: ($piano.offset().top + $piano.outerHeight() - 1) + 'px',
+                    left: '50%',
+                    marginLeft: Math.floor(-W/2) + 'px', // need to figure this out...
+                    width: W,
+                    height: H,
+                    display: none
+                }
+            })
+            .attr('width', W)
+            .attr('height', H)
+            .prependTo('body'),
+            canvas = $canvas.get(0),
+            ctx = canvas.getContext('2d');
 
         function choice(x) {
             return x[Math.floor(Math.random()*x.length)];
