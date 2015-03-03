@@ -1,4 +1,5 @@
-# pianothingy-MVP
+# Musichord MVP
+### for Team Appiphany
 
 MVP for piano notation app.
 
