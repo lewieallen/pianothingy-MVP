@@ -161,8 +161,8 @@
         /*]*/ 221: 18, // f#
         /*enter*/ 13: 19 // g
     };
-    // Removing interaction
-    // var notesShift = -12;
+    
+    var notesShift = -12;
     var downKeys = {};
 
     function isModifierKey(evt) {
