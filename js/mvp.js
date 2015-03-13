@@ -54,10 +54,10 @@ stave.addClef("treble").setContext(ctx).draw();
 notes = [
         // quarter Cm
     new Vex.Flow.StaveNote({
-        keys: ["c/4", "eb/4", "g/4"],
+        keys: ["c/4", "bb/4", "g/4"],
         duration: "q"
     })
-    .addAccidental(1, new Vex.Flow.Accidental("b")),
+    .addAccidental(2, new Vex.Flow.Accidental("b")),
         // quarter A
     new Vex.Flow.StaveNote({
         keys: ["a/4"],
@@ -99,8 +99,11 @@ formatter = new Vex.Flow.Formatter()
                 .format([voice], width);
     // join the voices together (only one for now)
     // format the justification of the voice to the width of the stave.
-
-voice.draw(ctx, stave);
+// ***********************************************
+// ***********************************************
+// voice.draw(ctx, stave);
+// ***********************************************
+// ***********************************************
     // To draw the voice - pass it the renderer context and the stave on which it
     // will be drawn.
 

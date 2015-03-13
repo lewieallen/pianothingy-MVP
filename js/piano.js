@@ -2,6 +2,47 @@
  *  Licensed under the MIT license: http://mrcoles.com/media/mit-license.txt
  */
 
+// 0 is middle C on the piano
+// first vlaue passed is the length of note. 
+var main = [
+    [6, -7, -5],
+    [6, -7, -5],
+    [6, -7, -5],
+    [6, -7, -5],
+    [6, -7, -5],
+    [6, -7, -5],
+
+    [6, -8, -5],
+    [6, -8, -5],
+    [6, -8, -5],
+    [6, -8, -5],
+    [6, -8, -5],
+    [6, -8, -5],
+
+    [6, -10, -1],
+    [6, -10, -1],
+    [6, -10, -1],
+    [6, -10, -1],
+    [6, -10, -1],
+    [6, -10, -1],
+
+    [6, -12, 0],
+    [6, -12, 0],
+    [6, -12, 0]
+];
+
+// Redfined main to match the stave - STILL NO CONNECTION
+// TODO - MAKE THEM CONNECTED
+
+var main = [
+    [16, -12, -9, -5],
+    [16],
+    [16, -12, -8, -5],
+    [16]
+];
+
+
+
 (function() {
 
     //
@@ -259,45 +300,6 @@
                     'notesOffset': 0
                 }
             ];
-            // 0 is middle C on the piano
-            // first vlaue passed is the length of note. 
-            var main = [
-                [6, -7, -5],
-                [6, -7, -5],
-                [6, -7, -5],
-                [6, -7, -5],
-                [6, -7, -5],
-                [6, -7, -5],
-
-                [6, -8, -5],
-                [6, -8, -5],
-                [6, -8, -5],
-                [6, -8, -5],
-                [6, -8, -5],
-                [6, -8, -5],
-
-                [6, -10, -1],
-                [6, -10, -1],
-                [6, -10, -1],
-                [6, -10, -1],
-                [6, -10, -1],
-                [6, -10, -1],
-
-                [6, -12, 0],
-                [6, -12, 0],
-                [6, -12, 0]
-            ];
-
-            // Redfined main to match the stave - STILL NO CONNECTION
-            // TODO - MAKE THEM CONNECTED
-
-            var main = [
-                [16, -12, -9, -5],
-                [16, -3],
-                [16, -8, -1],
-                [16, -12, -8, -5],
-            ];
-
             data.push.apply(data, main);
             // data.push(
             //     [6, -12, 0],
