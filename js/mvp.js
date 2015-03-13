@@ -54,10 +54,10 @@ stave.addClef("treble").setContext(ctx).draw();
 notes = [
         // quarter Cm
     new Vex.Flow.StaveNote({
-        keys: ["c/4", "eb/4", "g/4"],
+        keys: ["c/4", "bb/4", "g/4"],
         duration: "q"
     })
-    .addAccidental(1, new Vex.Flow.Accidental("b")),
+    .addAccidental(2, new Vex.Flow.Accidental("b")),
         // quarter A
     new Vex.Flow.StaveNote({
         keys: ["a/4"],
