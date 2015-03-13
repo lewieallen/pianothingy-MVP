@@ -99,8 +99,11 @@ formatter = new Vex.Flow.Formatter()
                 .format([voice], width);
     // join the voices together (only one for now)
     // format the justification of the voice to the width of the stave.
-
-voice.draw(ctx, stave);
+// ***********************************************
+// ***********************************************
+// voice.draw(ctx, stave);
+// ***********************************************
+// ***********************************************
     // To draw the voice - pass it the renderer context and the stave on which it
     // will be drawn.
 
