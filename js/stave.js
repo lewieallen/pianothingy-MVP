@@ -1,9 +1,9 @@
-var canvas = $('.canvas-wrapper-2 canvas')[0],
+var canvas = $('.canvas-wrapper canvas')[0],
     renderer = new Vex.Flow.Renderer(canvas, Vex.Flow.Renderer.Backends.CANVAS),
     ctx = renderer.getContext(),
     notesBar1,
     notesBar2,
-    staveWidth = 300;
+    staveWidth = 340;
 
 // Stave 1
 var staveBar1 = new Vex.Flow.Stave(10, -10, staveWidth);
