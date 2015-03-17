@@ -34,12 +34,12 @@ var main = [
 // Redfined main to match the stave - STILL NO CONNECTION
 // TODO - MAKE THEM CONNECTED
 
-var main = [
-    [16, -12, -9, -5],
-    [16],
-    [16, -12, -8, -5],
-    [16]
-];
+// var main = [
+//     [16, -12, -9, -5],
+//     [16],
+//     [16, -12, -8, -5],
+//     [16]
+// ];
 
 
 
