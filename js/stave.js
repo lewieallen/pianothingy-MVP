@@ -27,7 +27,7 @@ notesBar1 = [
     .addAccidental(1, new Vex.Flow.Accidental("b")),
         // quarter A
     new Vex.Flow.StaveNote({
-        keys: ["f/4"],
+        keys: ["b/4"],
         duration: "qr"
     }),
         // quarter rest
