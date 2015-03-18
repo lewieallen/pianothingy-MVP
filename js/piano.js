@@ -2,6 +2,8 @@
  *  Licensed under the MIT license: http://mrcoles.com/media/mit-license.txt
  */
 
+
+
 // 0 is middle C on the piano
 // first vlaue passed is the length of note. 
 var main = [
@@ -34,12 +36,12 @@ var main = [
 // Redfined main to match the stave - STILL NO CONNECTION
 // TODO - MAKE THEM CONNECTED
 
-var main = [
-    [16, -12, -9, -5],
-    [16],
-    [16, -12, -8, -5],
-    [16]
-];
+// var main = [
+//     [16, -12, -9, -5],
+//     [16],
+//     [16, -12, -8, -5],
+//     [16]
+// ];
 
 
 
@@ -375,7 +377,10 @@ var main = [
                 cfg.notesOffset !== undefined && (notesOffset = cfg.notesOffset);
                 $keys.one('build-done.piano', function() {
                     //NOTE - jQuery.map flattens arrays
-                    var i = 0, song = $.map(data, function(x, i) { return i == 0 ? null : [x]; });
+                    var i = 0, 
+                        song = $.map(data, function(x, i) { 
+                            return i == 0 ? null : [x]; 
+                        });
                     (function play() {
                         if (!demoing) return;
                         if (i >= song.length) { i = 0; }
