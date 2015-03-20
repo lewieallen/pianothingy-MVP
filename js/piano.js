@@ -57,7 +57,7 @@ function noteConvert(a) {
                 break;
             case "-9":
                 keyPress.stave.push("eb/4");
-                drawNote(keyPress.stave[i], false);
+                drawNote(keyPress.stave[i], "b");
                 keyPress.stave.splice(keyPress.stave.indexOf("eb/4"), 1);
                 break;
         }        
