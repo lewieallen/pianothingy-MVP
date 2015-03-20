@@ -10,20 +10,41 @@ var notesBar1 = [];
 var pressed = [];
 var renderer;
 // var keysList = document.getElementsByClassName('key');
-function drawNote(val, accidental) {
-    
-    if(accidental) {
-        notesBar1.push(new Vex.Flow.StaveNote({
-            keys: [val],
-            duration: "q"
-        })
-        .addAccidental(0, new Vex.Flow.Accidental(accidental)))
-    } else {
-        notesBar1.push(new Vex.Flow.StaveNote({
-            keys: [val],
-            duration: "q"
-        }));
-    }
+function drawNote(arr, accidental) {
+
+    var note;
+    var down = -1;
+    var up = 1;
+
+    for (var i = 0; i < arr.length; i++) {
+        if (accidental) {
+            note = new Vex.Flow.StaveNote({
+                keys: [arr[i]],
+                duration: "q"
+            })
+            .addAccidental(0, new Vex.Flow.Accidental(accidental));
+            if (arr[i].indexOf("5", 1) > -1 || arr[i].indexOf("6", 1) > -1) {
+                note.setStemDirection(down);
+                notesBar1.push(note);
+            } else {
+                note.setStemDirection(up);
+                notesBar1.push(note);
+            }
+        } else {
+            note = (new Vex.Flow.StaveNote({
+                keys: [arr[i]],
+                duration: "q"
+            }));
+            if (arr[i].indexOf("5", 1) > -1 || arr[i].indexOf("6", 1) > -1) {
+                note.setStemDirection(down);
+                notesBar1.push(note);
+            } else {
+                note.setStemDirection(up);
+                notesBar1.push(note);
+            }
+        }
+    };
+        
     ctx.clear();
     // staveBar1.addClef("treble").setContext(ctx).draw();
     staveBar1.setContext(ctx).draw();
@@ -37,28 +58,93 @@ function drawNote(val, accidental) {
 }
 // 0 is middle C on the piano
 // first vlaue passed is the length of note. 
+function conversion(val, acc) {
+    keyPress.stave.push(val);
+    drawNote(keyPress.stave, acc);
+    keyPress.stave.splice(keyPress.stave.indexOf(val), 1);
+}
+
 function noteConvert(a) {
     for (var i = 0; i < a.length; i++) {
         switch (a[i]) {
             case "-12":
-                keyPress.stave.push("c/4");
-                drawNote(keyPress.stave[i], false);
-                keyPress.stave.splice(keyPress.stave.indexOf("c/4"), 1);
+                conversion("c/4", false);
                 break;
             case "-11":
-                keyPress.stave.push("c/4");
-                drawNote(keyPress.stave[i], "#");
-                keyPress.stave.splice(keyPress.stave.indexOf("c/4"), 1);
+                conversion("c/4", '#');
                 break;
             case "-10":
-                keyPress.stave.push("d/4");
-                drawNote(keyPress.stave[i], false);
-                keyPress.stave.splice(keyPress.stave.indexOf("d/4"), 1);
+                conversion("d/4", false);
                 break;
             case "-9":
-                keyPress.stave.push("eb/4");
-                drawNote(keyPress.stave[i], "b");
-                keyPress.stave.splice(keyPress.stave.indexOf("eb/4"), 1);
+                conversion("eb/4", "b");
+                break;
+            case "-8":
+                conversion("e/4", false);
+                break;
+            case "-7":
+                conversion("f/4", false);
+                break;
+            case "-6":
+                conversion("f/4", "#");
+                break;
+            case "-5":
+                conversion("g/4", false);
+                break;
+            case "-4":
+                conversion("ab/4", "b");
+                break;
+            case "-3":
+                conversion("a/4", false);
+                break;
+            case "-2":
+                conversion("bb/4", "b");
+                break;
+            case "-1":
+                conversion("b/4", false);
+                break;
+            // Middle C
+            case "0":
+                conversion("c/5", false);
+                break;
+            case "1":
+                conversion("c/5", '#');
+                break;
+            case "2":
+                conversion("d/5", false);
+                break;
+            case "3":
+                conversion("eb/5", "b");
+                break;
+            case "4":
+                conversion("e/5", false);
+                break;
+            case "5":
+                conversion("f/5", false);
+                break;
+            case "6":
+                conversion("f/5", "#");
+                break;
+            case "7":
+                conversion("g/5", false);
+                break;
+            case "8":
+                conversion("ab/5", "b");
+                break;
+            case "9":
+                conversion("a/5", false);
+                break;
+            case "10":
+                conversion("bb/5", "b");
+                break;
+            case "11":
+                conversion("b/5", false);
+                break;
+            case "12":
+                conversion("c/6", false);
+                break;
+            case "13":
+                conversion("c/6", "#");
                 break;
         }        
     };
