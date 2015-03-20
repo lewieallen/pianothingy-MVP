@@ -233,7 +233,9 @@ function buildPiano() {
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
                     keyPress.piano.push(this.dataset.key);
-                    preMain.push(this.dataset.key);
+                    preMain.push(
+                            parseInt(this.dataset.key)
+                        );
                     noteConvert(keyPress.piano);
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
                 },
@@ -324,12 +326,11 @@ var keyNotes = {
     /*l*/ 76: 14, // d
     /*p*/ 80: 15, // d#
     /*;*/ 186: 16, // e
-    /*;*/ 59: 16, // e ... gotta figure out why it's sometimes 186 and sometimes 59
+    /*;*/ 59: 16, // e (sometimes 186 and sometimes 59)
     /*,*/ 222: 17, // f
     /*]*/ 221: 18, // f#
     /*enter*/ 13: 19 // g
 };
-
 var notesShift = -12;
 var downKeys = {};
 
@@ -392,7 +393,9 @@ $(window).keydown(function(evt) {
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
     keyPress.piano.push(toStave[key]);
-    preMain.push(toStave[key]);
+    preMain.push(
+            parseInt(toStave[key])
+        );
     noteConvert(keyPress.piano);
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
@@ -452,7 +455,7 @@ var main = [
 
 function defineMain () {
     var demoSpeed = 64,
-        noteLength = Math.round(demoSpeed/preMain.length).toString();
+        noteLength = Math.round(demoSpeed/preMain.length);
 
     function listToMatrix(list, elementsPerSubArray) {
         var matrix = [], i, k;
@@ -471,7 +474,6 @@ function defineMain () {
 
     main = listToMatrix(preMain, 1);
     return main;
-    // preMain.push(noteLength);
 }
 
 
@@ -488,8 +490,6 @@ var data = [
 
 function chopsticks() {    
     data.push.apply(data, main);
-    console.log('data: ', data);
-    console.log('main: ', main);
     return data;
 };
 
@@ -499,7 +499,6 @@ var demoing = false, demoingTimeout;
 function demo(data) {
     console.log('*demo called*');
     console.log('data: ', data);
-    console.log('main: ', main);
     var cfg = data[0];
     if (!buildingPiano && !demoing) {
         demoing = true;
@@ -537,10 +536,7 @@ function demoHandler(evt) {
             demoing = false;
             window.clearTimeout(demoingTimeout);
             $keys.unbind('build-done.piano');
-        } else {
-            console.log('*demoHandler called*');
-            console.log('data: ', data);
-            console.log('main: ', main);
+        } else {    
             demo(chopsticks());
         }
     }
