@@ -10,6 +10,19 @@ var notesBar1 = [];
 var pressed = [];
 var renderer;
 // var keysList = document.getElementsByClassName('key');
+
+function renderNotes() {
+    ctx.clear();
+    // staveBar1.addClef("treble").setContext(ctx).draw();
+    staveBar1.setContext(ctx).draw();
+    staveBar2.setContext(ctx).draw();
+    Vex.Flow.Formatter.FormatAndDraw(ctx, staveBar1, notesBar1);
+    console.log("drawing");
+    // Vex.Flow.Formatter.FormatAndDraw(ctx, staveBar2, notesBar2);
+
+    // notesBar1 = [];
+}
+
 function drawNote(arr, accidental) {
 
     var note;
@@ -45,16 +58,7 @@ function drawNote(arr, accidental) {
         }
     };
         
-    ctx.clear();
-    // staveBar1.addClef("treble").setContext(ctx).draw();
-    staveBar1.setContext(ctx).draw();
-    staveBar2.setContext(ctx).draw();
-// There needs to be some way of reading what key has been pressed, writing that to the stave
-    Vex.Flow.Formatter.FormatAndDraw(ctx, staveBar1, notesBar1);
-    console.log("drawing");
-    // Vex.Flow.Formatter.FormatAndDraw(ctx, staveBar2, notesBar2);
-
-    // notesBar1 = [];
+    renderNotes();
 }
 // 0 is middle C on the piano
 // first vlaue passed is the length of note. 
@@ -63,10 +67,12 @@ function conversion(val, acc) {
     drawNote(keyPress.stave, acc);
     keyPress.stave.splice(keyPress.stave.indexOf(val), 1);
 }
-
+// .replace(/['"]+/g, '')
 function noteConvert(a) {
     for (var i = 0; i < a.length; i++) {
-        switch (a[i]) {
+        console.log('array value: ', a[i]);
+        console.log('typeof: ', typeof(a[i]));
+        switch (a[i].toString()) {
             case "-12":
                 conversion("c/4", false);
                 break;
@@ -367,13 +373,14 @@ function isModifierKey(evt) {
     ie. not when using an ipad which is expected main behaviour.
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+var key;
 
 $(window).keydown(function(evt) {
     var keyCode = evt.keyCode;
     // prevent repeating keys
     if (!downKeys[keyCode] && !isModifierKey(evt)) {
         downKeys[keyCode] = 1;
-        var key = keyNotes[keyCode];
+        key = keyNotes[keyCode];
         if (typeof key != 'undefined') {
             $keys.trigger('note-'+(key+notesShift+notesOffset)+'.play');
             evt.preventDefault();
@@ -388,7 +395,9 @@ $(window).keydown(function(evt) {
     }
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    console.log("key pressed down");
+    console.log("key pressed down. keyCode: ", keyCode);
+    keyPress.piano.push(key);
+    noteConvert(keyPress.piano);
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 
@@ -398,6 +407,7 @@ $(window).keydown(function(evt) {
 
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
     console.log("and released");
+    keyPress.piano.splice(keyPress.piano.indexOf(key), 1);
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
