@@ -8,21 +8,32 @@ var keyPress = {
     };
 var notesBar1 = [];
 var pressed = [];
+var renderer;
 // var keysList = document.getElementsByClassName('key');
 function drawNote(val, accidental) {
+    
     if(accidental) {
-        console.log('accidental is true');
+        notesBar1.push(new Vex.Flow.StaveNote({
+            keys: [val],
+            duration: "q"
+        })
+        .addAccidental(0, new Vex.Flow.Accidental(accidental)))
     } else {
         notesBar1.push(new Vex.Flow.StaveNote({
-                keys: [val],
-                duration: "q"
-            }))
+            keys: [val],
+            duration: "q"
+        }));
     }
-    
+    ctx.clear();
+    // staveBar1.addClef("treble").setContext(ctx).draw();
+    staveBar1.setContext(ctx).draw();
+    staveBar2.setContext(ctx).draw();
+// There needs to be some way of reading what key has been pressed, writing that to the stave
     Vex.Flow.Formatter.FormatAndDraw(ctx, staveBar1, notesBar1);
-    Vex.Flow.Formatter.FormatAndDraw(ctx, staveBar2, notesBar2);
-    
-    notesBar1 = [];
+    console.log("drawing");
+    // Vex.Flow.Formatter.FormatAndDraw(ctx, staveBar2, notesBar2);
+
+    // notesBar1 = [];
 }
 // 0 is middle C on the piano
 // first vlaue passed is the length of note. 
@@ -32,18 +43,22 @@ function noteConvert(a) {
             case "-12":
                 keyPress.stave.push("c/4");
                 drawNote(keyPress.stave[i], false);
+                keyPress.stave.splice(keyPress.stave.indexOf("c/4"), 1);
                 break;
-            case "-12":
+            case "-11":
                 keyPress.stave.push("c/4");
-                drawNote(keyPress.stave[i], false);
+                drawNote(keyPress.stave[i], "#");
+                keyPress.stave.splice(keyPress.stave.indexOf("c/4"), 1);
                 break;
-            case "-12":
-                keyPress.stave.push("c/4");
+            case "-10":
+                keyPress.stave.push("d/4");
                 drawNote(keyPress.stave[i], false);
+                keyPress.stave.splice(keyPress.stave.indexOf("d/4"), 1);
                 break;
-            case "-12":
-                keyPress.stave.push("c/4");
+            case "-9":
+                keyPress.stave.push("eb/4");
                 drawNote(keyPress.stave[i], false);
+                keyPress.stave.splice(keyPress.stave.indexOf("eb/4"), 1);
                 break;
         }        
     };
