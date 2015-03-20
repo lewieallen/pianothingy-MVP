@@ -5,10 +5,11 @@
 var keyPress = {
         piano: [],
         stave: []
-    };
-var notesBar1 = [];
-var pressed = [];
-var renderer;
+    },
+    notesBar1 = [],
+    pressed = [],
+    addToStave = true,
+    renderer;
 
 function renderNotes() {
     defineMain();
@@ -18,8 +19,7 @@ function renderNotes() {
     staveBar2.setContext(ctx).draw();
     notesBar2 = notesBar1;
     Vex.Flow.Formatter.FormatAndDraw(ctx, staveBar1, notesBar1);
-    // Vex.Flow.Formatter.FormatAndDraw(ctx, staveBar2, notesBar2);
-
+    Vex.Flow.Formatter.FormatAndDraw(ctx, staveBar2, notesBar2);
 }
 
 function drawNote(arr, accidental) {
@@ -153,8 +153,7 @@ function noteConvert(a) {
     };
 }
 
-//
-// Setup keys!
+ // Setup keys!
 //
 
 var notesOffset = 0;
@@ -231,20 +230,22 @@ function buildPiano() {
                 $keys.trigger('note-'+i+'.play');
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
-                    keyPress.piano.push(this.dataset.key);
-                    preMain.push(
-                            parseInt(this.dataset.key)
-                        );
-                    noteConvert(keyPress.piano);
+                    if (addToStave) {
+                        keyPress.piano.push(this.dataset.key);
+                        preMain.push(
+                                parseInt(this.dataset.key)
+                            );
+                        noteConvert(keyPress.piano);
+                    }                
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
                 },
                 mouseup: function(evt) {
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
-                    keyPress.piano.splice(keyPress.piano.indexOf(this.dataset.key), 1);
-                        // second parameter of splice is number of # to be removed
+                    if (addToStave) {
+                        keyPress.piano.splice(keyPress.piano.indexOf(this.dataset.key), 1);
+                            // second parameter of splice is number of # to be removed
+                    }
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
                 }
         }).appendTo($keys);
@@ -391,12 +392,14 @@ $(window).keydown(function(evt) {
     }
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
-    keyPress.piano.push(toStave[key]);
-    preMain.push(
-            parseInt(toStave[key])
-        );
-    noteConvert(keyPress.piano);
+    if (addToStave) {
+        keyPress.piano.push(toStave[key]);
+        preMain.push(
+                parseInt(toStave[key])
+            );
+        noteConvert(keyPress.piano);
+    }
+    
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 
@@ -405,8 +408,11 @@ $(window).keydown(function(evt) {
 
 
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    console.log("and released");
-    keyPress.piano.splice(keyPress.piano.indexOf(key), 1);
+    if (addToStave) {
+        console.log("and released");
+        keyPress.piano.splice(keyPress.piano.indexOf(key), 1);
+    }
+
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
@@ -455,7 +461,7 @@ var main = [
 
 function defineMain () {
     var demoSpeed = 64,
-        noteLength = Math.round(demoSpeed/preMain.length);
+        noteLength = Math.round(demoSpeed/main.length);
 
     function listToMatrix(list, elementsPerSubArray) {
         var matrix = [], i, k;
@@ -471,7 +477,7 @@ function defineMain () {
 
         return matrix;
     }
-
+    main = [];
     main = listToMatrix(preMain, 1);
     return main;
 }
@@ -488,7 +494,10 @@ var data = [
     }
 ];
 
-function chopsticks() {    
+function chopsticks() {
+    data.splice(1, 100);
+        // So bait... Empties the data array after the first
+        // config element so that all notes are given the same time signature
     data.push.apply(data, main);
     return data;
 };
@@ -498,7 +507,6 @@ var demoing = false, demoingTimeout;
 
 function demo(data) {
     console.log('*demo called*');
-    console.log('data: ', data);
     var cfg = data[0];
     if (!buildingPiano && !demoing) {
         demoing = true;
@@ -536,8 +544,10 @@ function demoHandler(evt) {
             demoing = false;
             window.clearTimeout(demoingTimeout);
             $keys.unbind('build-done.piano');
+            addToStave = true;
         } else {    
             demo(chopsticks());
+            addToStave = false;
         }
     }
 }
