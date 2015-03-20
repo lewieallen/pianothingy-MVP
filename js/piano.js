@@ -16,18 +16,16 @@ function renderNotes() {
     // staveBar1.addClef("treble").setContext(ctx).draw();
     staveBar1.setContext(ctx).draw();
     staveBar2.setContext(ctx).draw();
+    notesBar2 = notesBar1;
     Vex.Flow.Formatter.FormatAndDraw(ctx, staveBar1, notesBar1);
-    console.log("drawing");
     // Vex.Flow.Formatter.FormatAndDraw(ctx, staveBar2, notesBar2);
 
-    // notesBar1 = [];
 }
 
 function drawNote(arr, accidental) {
-
-    var note;
-    var down = -1;
-    var up = 1;
+    var note,
+        down = -1,
+        up = 1;
 
     for (var i = 0; i < arr.length; i++) {
         if (accidental) {
@@ -60,14 +58,13 @@ function drawNote(arr, accidental) {
         
     renderNotes();
 }
-// 0 is middle C on the piano
-// first vlaue passed is the length of note. 
+
 function conversion(val, acc) {
     keyPress.stave.push(val);
     drawNote(keyPress.stave, acc);
     keyPress.stave.splice(keyPress.stave.indexOf(val), 1);
 }
-// .replace(/['"]+/g, '')
+
 function noteConvert(a) {
     for (var i = 0; i < a.length; i++) {
         console.log('array value: ', a[i]);
@@ -373,8 +370,32 @@ function isModifierKey(evt) {
     ie. not when using an ipad which is expected main behaviour.
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-var key;
 
+var toStave = {
+    0: -12,
+    1: -11, 
+    2: -10,
+    3: -9, 
+    4: -8,
+    5: -7,
+    6: -6, 
+    7: -5,
+    8: -4, 
+    9: -3,
+    10: -2, 
+    11: -1,
+    12: 0,
+    13: 1, 
+    14: 2,
+    15: 3, 
+    16: 4,
+    16: 5,
+    17: 6,
+    18: 7, 
+    19: 8
+}
+
+var key;
 $(window).keydown(function(evt) {
     var keyCode = evt.keyCode;
     // prevent repeating keys
@@ -396,7 +417,8 @@ $(window).keydown(function(evt) {
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
     console.log("key pressed down. keyCode: ", keyCode);
-    keyPress.piano.push(key);
+    keyPress.piano.push(toStave[key]);
+    console.log("pushed to piano array: ", toStave[key]);
     noteConvert(keyPress.piano);
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
