@@ -9,9 +9,9 @@ var keyPress = {
 var notesBar1 = [];
 var pressed = [];
 var renderer;
-// var keysList = document.getElementsByClassName('key');
 
 function renderNotes() {
+    defineMain();
     ctx.clear();
     // staveBar1.addClef("treble").setContext(ctx).draw();
     staveBar1.setContext(ctx).draw();
@@ -153,20 +153,6 @@ function noteConvert(a) {
     };
 }
 
-// Redfined main to match the stave - STILL NO CONNECTION
-// TODO - MAKE THEM CONNECTED
-
-var main = [
-    [16, -12, -9, -5],
-    [16],
-    [16, -12, -8, -5],
-    [16]
-];
-
-
-
-
-
 //
 // Setup keys!
 //
@@ -194,7 +180,7 @@ var buildingPiano = false;
 
 var isIos = navigator.userAgent.match(/(iPhone|iPad)/i);
 
-function buildPiano(callback) {
+function buildPiano() {
     if (buildingPiano) return;
     buildingPiano = true;
 
@@ -247,6 +233,7 @@ function buildPiano(callback) {
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
                     keyPress.piano.push(this.dataset.key);
+                    preMain.push(this.dataset.key);
                     noteConvert(keyPress.piano);
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
                 },
@@ -272,22 +259,9 @@ function buildPiano(callback) {
             $keys.trigger('build-done.piano');
         }
     })();
-
-/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    callback();
-/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 }
 
-buildPiano(createDataSet);
-/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    // Immediately after the first build:
-/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-function createDataSet() {
-    console.log("buildPiano() callback run.");
-}
-/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
+buildPiano();
 
 
 
@@ -416,9 +390,9 @@ $(window).keydown(function(evt) {
     }
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    console.log("key pressed down. keyCode: ", keyCode);
+
     keyPress.piano.push(toStave[key]);
-    console.log("pushed to piano array: ", toStave[key]);
+    preMain.push(toStave[key]);
     noteConvert(keyPress.piano);
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
@@ -467,94 +441,110 @@ $(window).keydown(function(evt) {
     return true;
 });
 
+
+var preMain = [];
+var main = [
+                [16, -12, -9, -5],
+                [16],
+                [16, -12, -8, -5],
+                [16]
+    ];
+
+function defineMain () {
+    var demoSpeed = 64,
+        noteLength = Math.round(demoSpeed/preMain.length).toString();
+
+    function listToMatrix(list, elementsPerSubArray) {
+        var matrix = [], i, k;
+
+        for (i = 0, k = -1; i < list.length; i++) {
+            if (i % elementsPerSubArray === 0) {
+                k++;
+                matrix[k] = [noteLength];
+            }
+
+            matrix[k].push(list[i]);
+        }
+
+        return matrix;
+    }
+
+    main = listToMatrix(preMain, 1);
+    return main;
+    // preMain.push(noteLength);
+}
+
+
 //
 // Demo
 //
-(function(undefined) {
-    var chopsticks = (function() {
-        var data = [
-            {
-                'style': 'wave',
-                'volume': 'linearFade',
-                'notesOffset': 0
-            }
-        ];
-        data.push.apply(data, main);
-        // data.push(
-        //     [6, -12, 0],
-        //     [6, -10, -1],
-        //     [6, -8, -3]
-        // );
-        // data.push.apply(data, main);
-        // data.push(
-        //     [6, -10, -7],
-        //     [6, -12, -8],
-        //     [6],
+var data = [
+    {
+        'style': 'wave',
+        'volume': 'linearFade',
+        'notesOffset': 0
+    }
+];
 
-        //         [6, -8, 0],
-        //     [6, -8, 0],
-        //     [6]
-        // );
-        // data.push.apply(data, main2);
-        // data.push(
-        //     [6, -5, -1],
-        //     [6, -8, 0],
-        //     [6, -5],
-
-        //     [6, -8],
-        //     [6, -12],
-        //     [6]
-        // );
-        return data;
-    })();
+function chopsticks() {    
+    data.push.apply(data, main);
+    console.log('data: ', data);
+    console.log('main: ', main);
+    return data;
+};
 
 
-    var demoing = false, demoingTimeout;
-    function demo(data) {
-        var cfg = data[0];
-        if (!buildingPiano && !demoing) {
-            demoing = true;
-            cfg.style && (DataGenerator.style.default = DataGenerator.style[cfg.style]);
-            cfg.volume && (DataGenerator.volume.default = DataGenerator.volume[cfg.volume]);
-            cfg.notesOffset !== undefined && (notesOffset = cfg.notesOffset);
-            $keys.one('build-done.piano', function() {
-                //NOTE - jQuery.map flattens arrays
-                var i = 0, 
-                    song = $.map(data, function(x, i) { 
-                        return i == 0 ? null : [x]; 
-                    });
-                (function play() {
-                    if (!demoing) return;
-                    if (i >= song.length) { i = 0; }
-                    var part = song[i++];
-                    if (part) {
-                        var delay = part[0];
-                        demoingTimeout = window.setTimeout(function() {
-                            demoing && play();
-                            for (var j=1, len=part.length; j<len; j++) {
-                                $keys.trigger('note-'+(part[j]+notesOffset)+'.play');
-                            }
-                        }, delay*50);
-                    }
-                })();
-            });
-            buildPiano();
+var demoing = false, demoingTimeout;
+
+function demo(data) {
+    console.log('*demo called*');
+    console.log('data: ', data);
+    console.log('main: ', main);
+    var cfg = data[0];
+    if (!buildingPiano && !demoing) {
+        demoing = true;
+        cfg.style && (DataGenerator.style.default = DataGenerator.style[cfg.style]);
+        cfg.volume && (DataGenerator.volume.default = DataGenerator.volume[cfg.volume]);
+        cfg.notesOffset !== undefined && (notesOffset = cfg.notesOffset);
+        $keys.one('build-done.piano', function() {
+            //NOTE - jQuery.map flattens arrays
+            var i = 0, 
+                song = $.map(data, function(x, i) { 
+                    return i == 0 ? null : [x]; 
+                });
+            (function play() {
+                if (!demoing) return;
+                if (i >= song.length) { i = 0; }
+                var part = song[i++];
+                if (part) {
+                    var delay = part[0];
+                    demoingTimeout = window.setTimeout(function() {
+                        demoing && play();
+                        for (var j=1, len=part.length; j<len; j++) {
+                            $keys.trigger('note-'+(part[j]+notesOffset)+'.play');
+                        }
+                    }, delay*50);
+                }
+            })();
+        });
+        buildPiano();
+    }
+}
+
+function demoHandler(evt) {
+    if (evt.type === 'click' || (evt.keyCode == 77 && !isModifierKey(evt))) {
+        if (demoing) {
+            demoing = false;
+            window.clearTimeout(demoingTimeout);
+            $keys.unbind('build-done.piano');
+        } else {
+            console.log('*demoHandler called*');
+            console.log('data: ', data);
+            console.log('main: ', main);
+            demo(chopsticks());
         }
     }
+}
 
-    function demoHandler(evt) {
-        if (evt.type === 'click' || (evt.keyCode == 77 && !isModifierKey(evt))) {
-            if (demoing) {
-                demoing = false;
-                window.clearTimeout(demoingTimeout);
-                $keys.unbind('build-done.piano');
-            } else {
-                demo(chopsticks);
-            }
-        }
-    }
-
-    $(window).keyup(demoHandler);
-    $('.play').click(demoHandler);
-})();
-
+$(window).keyup(demoHandler);
+$('#play-button').click(demoHandler);
