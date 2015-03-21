@@ -56,6 +56,11 @@ canvas {
   width: 4em;
 }
 
+#play-button:hover{
+  background-color: #fff;
+  color: #000;
+}
+
 .btn {
   display: block;
   padding: 6px 10px;
@@ -77,6 +82,9 @@ canvas {
   border: 1px solid transparent;
   border-radius: 4px;
 }
+
+
+
 
 .btn-lg,
 .btn-group-lg > .btn {
