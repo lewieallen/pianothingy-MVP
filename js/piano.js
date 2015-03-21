@@ -11,6 +11,17 @@ var keyPress = {
     addToStave = true,
     renderer;
 
+function clearNotes() {
+    // Clear stave and redraw empty
+    ctx.clear();
+    staveBar1.setContext(ctx).draw();
+    // Empty data references
+    preMain = [];
+    main = [];
+    notesBar1 = [];
+    data.splice(1, 100);
+}
+
 function renderNotes() {
     defineMain();
     ctx.clear();
@@ -272,34 +283,6 @@ function camelToText(x) {
     x = x.replace(/([A-Z])/g, ' $1');
     return x.charAt(0).toUpperCase() + x.substring(1);
 }
-
-// $.each(['volume', 'style'], function(i, setting) {
-//     var $opts = $('<div>', {
-//         'class': 'opts',
-//         html: '<p><strong>' + camelToText(setting) + ':</strong></p>'
-//     }).appendTo('#synth-settings');
-
-//     $.each(DataGenerator[setting], function(name, fn) {
-//         if (name != 'default') {
-//             $('<p>')
-//                 .append($('<a>', {
-//                     text: camelToText(name),
-//                     href: '#',
-//                     'class': fn === DataGenerator[setting].default ? 'selected' : '',
-//                     click: function(evt) {
-//                         evt.preventDefault();
-//                         DataGenerator[setting].default = fn;
-//                         buildPiano();
-//                         var $this = $(this);
-//                         $this.closest('.opts').find('.selected').removeClass('selected');
-//                         $this.addClass('selected');
-//                     }
-//                 }))
-//                 .appendTo($opts);
-//         }
-//     });
-// });
-
 
 //
 // Setup keyboard interaction
