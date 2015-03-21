@@ -13,7 +13,7 @@
 
     <img class="logo" src="img/musichordlogo.png" alt="">
 
-    <p class="lead">Play notes on the keyboard to make them appear in the stave. Press the Play button to hear what you did!</p>
+    <p class="lead">Play notes on the keyboard to make them appear in the stave. <br> Press the &#x25B6; button to hear what you did!</p>
 
     <div class="canvas-wrapper">
         <canvas width="700" height="100"></canvas>
@@ -24,16 +24,8 @@
     <div id="content">
         <div id="content-inner">
             <div id="piano">
-                <div class="help show" tabindex="1">
-                    <div class="help-inner">
-                        <div id="synth-settings"></div>
-                        <div class="opts">
-                            
-                        </div>
-                        <div class="opts">
+                <div id="help" class="help" tabindex="1">
 
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -46,6 +38,7 @@
 <script src="js/jquery-1.7.1.min.js"></script>
 <script src="js/vexflow/releases/vexflow-min.js"></script>
 <script src="js/audio.js"></script>
+<script src="js/refresh.js"></script>
 
 <!-- Custom JS -->
 <script src="js/piano.js"></script>
