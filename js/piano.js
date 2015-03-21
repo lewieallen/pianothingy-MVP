@@ -524,3 +524,4 @@ function demoHandler(evt) {
 
 $(window).keyup(demoHandler);
 $('#play-button').click(demoHandler);
+$('#clear').click(clearNotes);
