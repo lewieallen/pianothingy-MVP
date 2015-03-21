@@ -74,14 +74,15 @@
 
 /** help */
 
-.loop,
+
 .help {
     position: absolute;
+    padding: 10px;
     top: 25px;
     right: 42px;
     width: 20px;
     height: 20px;
-    color: transparent;
+    color: #fff;
     background-color: #B564DE;
     box-shadow: 1px 1px 0 rgba(0, 0, 0, .35), 1px 0 0 rgba(0, 0, 0, .35), 0 1px 0 rgba(0, 0, 0, .35), inset 1px 1px 0 rgba(255,255,255,.4);
     border-radius: 2px;
@@ -128,7 +129,7 @@
     cursor: default;
 }
 
-.help.show:focus { outline: none; }
+
 
 .opts { margin: 0; overflow: hidden; zoom: 1; width: 740px; height: 36px; line-height: 36px; }
 .opts p { float: left; margin: 0 10px 0 0; }
