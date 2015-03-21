@@ -55,7 +55,6 @@ function drawNote(arr, accidental) {
             }
         }
     };
-
     renderNotes();
 }
 
@@ -149,7 +148,7 @@ function noteConvert(a) {
             case "13":
                 conversion("c/6", "#");
                 break;
-        }
+        }        
     };
 }
 
@@ -416,8 +415,9 @@ $(window).keydown(function(evt) {
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
-
 });
+
+
 
 
 //

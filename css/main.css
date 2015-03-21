@@ -45,14 +45,21 @@ canvas {
 }
 
 #play-button {
+<<<<<<< HEAD
   font-size: 30px;
   text-align: center;
   background-color: #45D836;
   color: #fff;
+=======
+  font-size: 50px;
+  text-align: center;
+  background-color: #fff;
+>>>>>>> gh-pages
   display: block;
   margin: 0.4em auto;
   width: 4em;
 }
+<<<<<<< HEAD
 
 .btn {
   display: block;
@@ -84,6 +91,8 @@ canvas {
   border-radius: 6px;
 }
 
+=======
+>>>>>>> gh-pages
 .play:hover {
   cursor: pointer;
 }

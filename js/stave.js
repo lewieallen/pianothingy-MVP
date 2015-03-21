@@ -11,23 +11,40 @@ staveBar1.setBegBarType(2);
 // setBegBarType(Vex.Flow.Barline.type.REPEAT_BEGIN);
     // DOUBLE = 2
     // END = 3
-    // REPEAT_BEGIN = 4
+    // REPEAT_BEGIN = 4 
     // REPEAT_END = 5
-    // REPEAT_BOTH = 6
+    // REPEAT_BOTH = 6 
     // NONE = 7
-
 staveBar1.setEndBarType(7);
 
+// notesBar1 = [
+//         // quarter Cm
+//     new Vex.Flow.StaveNote({
+//         keys: ["c/4", "eb/4", "g/4"],
+//         duration: "q"
+//     })
+//     .addAccidental(1, new Vex.Flow.Accidental("b")),
+//         // quarter A
+//     new Vex.Flow.StaveNote({
+//         keys: ["b/4"],
+//         duration: "qr"
+//     }),
+//         // quarter rest
 //     new Vex.Flow.StaveNote({
 //         keys: ["c/4", "e/4", "g/4"],
 //         duration: "q"
 //             // NOTES this is a quarter rest
-//                 // it is given a glyph sub-property
+//                 // it is given a glyph sub-property 
 //                 // position: "b/4"
 //                 // rest: true
 //                 // stem: false (others will be true)
-
-notesBar2 = notesBar1;
+//     }),
+//         // quarter C
+//     new Vex.Flow.StaveNote({
+//         keys: ["b/4"],
+//         duration: "qr"
+//     })
+// ];
 
 var staveBar2 = new Vex.Flow.Stave(staveBar1.width + staveBar1.x, staveBar1.y, staveWidth);
 
