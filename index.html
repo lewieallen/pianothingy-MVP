@@ -1,24 +1,26 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>Piano MVP</title>
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/piano.css">
+    <meta charset="utf-8">
+    <title>Piano MVP</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/piano.css">
 </head>
 <body>
 
 
 <div class="container">
-    <h1>Pianothingy-MVP</h1>
 
-    <p class="lead">Play the score below and add notes with the piano... Have fun!!</p>
+    <img class="logo" src="img/musichordlogo.png" alt="">
+
+    <p class="lead">Play notes on the keyboard to make them appear in the stave. Press the Play button to hear what you did!</p>
 
     <div class="canvas-wrapper">
         <canvas width="700" height="100"></canvas>
     </div><!-- /canvas-wrapper -->
 
-    <h2 id="play-button">&#x25B6;</h2>
+    <button class="btn btn-lg" id="play-button">&#x25B6;</button>
 
     <div id="content">
         <div id="content-inner">
@@ -28,9 +30,9 @@
                         <div id="synth-settings"></div>
                         <div class="opts">
                             <p><strong>Controls:</strong></p>
-                           	<p>play using home row &amp; above &nbsp; /</p>
-                           	<p>change playable keys: “,” &amp; “.” &nbsp; /</p>
-                           	<p>shift keyboard: ← &amp; → <span id="shift"></span></p>
+                            <p>play using home row &amp; above &nbsp; /</p>
+                            <p>change playable keys: “,” &amp; “.” &nbsp; /</p>
+                            <p>shift keyboard: ← &amp; → <span id="shift"></span></p>
                         </div>
                         <div class="opts">
                             <p><strong>Extras:</strong></p>
@@ -42,11 +44,9 @@
                         </div>
                     </div>
                 </div>
-              	<div class="loop" tabindex="2">loop</div>
-          	</div>
+            </div>
         </div>
     </div>
-
 </div><!-- /container -->
 
 
@@ -57,10 +57,7 @@
 <script src="js/audio.js"></script>
 
 <!-- Custom JS -->
-    <!-- <script src="js/mvp.js"></script> -->
-    <!-- <script src="js/piano-x.js"></script> -->
 <script src="js/piano.js"></script>
-<script src="js/conversion.js"></script>
 <script src="js/stave.js"></script>
 
 </body>

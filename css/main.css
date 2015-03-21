@@ -1,7 +1,13 @@
+html,body{
+  height: 100vh;
+  overflow: hidden;
+}
+
+
 body{
   margin: 0;
-  padding: 50px 25px;
-  background-color: green;
+  padding: 20px 25px;
+  background-color: #000;
   font-family: "helvetica";
 }
 
@@ -12,8 +18,8 @@ h1 {
 .canvas-wrapper {
     display: block;
     box-sizing: border-box;
-    border: 2px dashed #898989;
-    margin: 0 auto;
+    border-radius: 7px;
+    margin: 10px auto;
     background-color: #fff;
 }
 canvas {
@@ -24,6 +30,13 @@ canvas {
 
 .lead{
   font-size: 28px;
+  color: #fff;
+}
+
+.logo{
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .container{
@@ -32,13 +45,54 @@ canvas {
 }
 
 #play-button {
+<<<<<<< HEAD
+  font-size: 30px;
+  text-align: center;
+  background-color: #45D836;
+  color: #fff;
+=======
   font-size: 50px;
   text-align: center;
   background-color: #fff;
+>>>>>>> gh-pages
   display: block;
   margin: 0.4em auto;
   width: 4em;
 }
+<<<<<<< HEAD
+
+.btn {
+  display: block;
+  padding: 6px 10px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.btn-lg,
+.btn-group-lg > .btn {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+}
+
+=======
+>>>>>>> gh-pages
 .play:hover {
   cursor: pointer;
 }

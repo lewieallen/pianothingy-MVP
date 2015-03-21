@@ -45,12 +45,8 @@ staveBar1.setEndBarType(7);
 //         duration: "qr"
 //     })
 // ];
-notesBar2 = notesBar1;
 
 var staveBar2 = new Vex.Flow.Stave(staveBar1.width + staveBar1.x, staveBar1.y, staveWidth);
 
 staveBar1.addClef("treble").setContext(ctx).draw();
 staveBar2.setContext(ctx).draw();
-
-// Vex.Flow.Formatter.FormatAndDraw(ctx, staveBar1, notesBar1);
-// Vex.Flow.Formatter.FormatAndDraw(ctx, staveBar2, notesBar2);
