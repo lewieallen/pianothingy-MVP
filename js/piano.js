@@ -16,10 +16,9 @@ function renderNotes() {
     ctx.clear();
     // staveBar1.addClef("treble").setContext(ctx).draw();
     staveBar1.setContext(ctx).draw();
-    staveBar2.setContext(ctx).draw();
-    notesBar2 = notesBar1;
+    // staveBar2.setContext(ctx).draw();
     Vex.Flow.Formatter.FormatAndDraw(ctx, staveBar1, notesBar1);
-    Vex.Flow.Formatter.FormatAndDraw(ctx, staveBar2, notesBar2);
+    // Vex.Flow.Formatter.FormatAndDraw(ctx, staveBar2, notesBar2);
 }
 
 function drawNote(arr, accidental) {

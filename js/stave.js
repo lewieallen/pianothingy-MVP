@@ -2,11 +2,13 @@ var canvas = $('.canvas-wrapper canvas')[0],
     renderer = new Vex.Flow.Renderer(canvas, Vex.Flow.Renderer.Backends.CANVAS),
     ctx = renderer.getContext(),
     notesBar2,
-    staveWidth = 340;
+    staveWidth = 680,
+    x = 10,
+    y = -10;
 
 // Stave 1
-var staveBar1 = new Vex.Flow.Stave(10, -10, staveWidth);
-//  staveBar1 = new Vex.Flow.Stave(x, y, width);
+var staveBar1 = new Vex.Flow.Stave(x, y, staveWidth);
+
 staveBar1.setBegBarType(2);
 // setBegBarType(Vex.Flow.Barline.type.REPEAT_BEGIN);
     // DOUBLE = 2
@@ -15,21 +17,7 @@ staveBar1.setBegBarType(2);
     // REPEAT_END = 5
     // REPEAT_BOTH = 6 
     // NONE = 7
-staveBar1.setEndBarType(7);
-
-// notesBar1 = [
-//         // quarter Cm
-//     new Vex.Flow.StaveNote({
-//         keys: ["c/4", "eb/4", "g/4"],
-//         duration: "q"
-//     })
-//     .addAccidental(1, new Vex.Flow.Accidental("b")),
-//         // quarter A
-//     new Vex.Flow.StaveNote({
-//         keys: ["b/4"],
-//         duration: "qr"
-//     }),
-//         // quarter rest
+staveBar1.setEndBarType(3);
 //     new Vex.Flow.StaveNote({
 //         keys: ["c/4", "e/4", "g/4"],
 //         duration: "q"
@@ -39,14 +27,9 @@ staveBar1.setEndBarType(7);
 //                 // rest: true
 //                 // stem: false (others will be true)
 //     }),
-//         // quarter C
-//     new Vex.Flow.StaveNote({
-//         keys: ["b/4"],
-//         duration: "qr"
-//     })
-// ];
 
-var staveBar2 = new Vex.Flow.Stave(staveBar1.width + staveBar1.x, staveBar1.y, staveWidth);
+
+// var staveBar2 = new Vex.Flow.Stave(staveBar1.width + staveBar1.x, staveBar1.y, staveWidth);
 
 staveBar1.addClef("treble").setContext(ctx).draw();
-staveBar2.setContext(ctx).draw();
+// staveBar2.setContext(ctx).draw();

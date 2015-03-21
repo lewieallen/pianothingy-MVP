@@ -1,32 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>Piano MVP</title>
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/index.css">
+    <meta charset="utf-8">
+    <title>Piano MVP</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/piano.css">
 </head>
 <body>
 
 
-  <div class="btn-container">
+<div class="container">
 
     <img class="logo" src="img/musichordlogo.png" alt="">
 
-    <p class="lead">Please select a genre
-</p>
-    <a href="index.html" class="folk btn btn-lg">Folk</a>
-    <a href="#" class="blues btn btn-lg">Blues</a>
-    <a href="#" class="classic btn btn-lg">Classical</a>
-    <a href="#" class="rnb btn btn-lg">RnB</a>
-    <a href="#" class="rock btn btn-lg">Rock</a>
+    <p class="lead">Play notes on the keyboard to make them appear in the stave. Press the Play button to hear what you did!</p>
+
+    <div class="canvas-wrapper">
+        <canvas width="700" height="100"></canvas>
+    </div><!-- /canvas-wrapper -->
+
+    <button class="btn btn-lg" id="play-button">&#x25B6;</button>
+
+    <div id="content">
+        <div id="content-inner">
+            <div id="piano">
+                <div class="help show" tabindex="1">
+                    <div class="help-inner">
+                        <div id="synth-settings"></div>
+                        <div class="opts">
+                            <p><strong>Controls:</strong></p>
+                            <p>play using home row &amp; above &nbsp; /</p>
+                            <p>change playable keys: “,” &amp; “.” &nbsp; /</p>
+                            <p>shift keyboard: ← &amp; → <span id="shift"></span></p>
+                        </div>
+                        <div class="opts">
+                            <p><strong>Extras:</strong></p>
+                            <p class="toggle-color toggle hold">Color - c &nbsp; /</p>
+                            <p class="toggle-demo toggle">Demo - m &nbsp; /</p>
+                            <p class="toggle-animate toggle">Visual mode - 8 &nbsp; /</p>
+                            <p class="toggle-looper">Looper - 9 &nbsp; /</p>
+                            <p>Help - 0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- /container -->
 
 
-  </div>
+<!-- Vendor Javascript files -->
+<!-- NB: All files require jquery -->
+<script src="js/jquery-1.7.1.min.js"></script>
+<script src="js/vexflow/releases/vexflow-min.js"></script>
+<script src="js/audio.js"></script>
 
-
-
-
+<!-- Custom JS -->
+<script src="js/piano.js"></script>
+<script src="js/stave.js"></script>
 
 </body>
 </html>
