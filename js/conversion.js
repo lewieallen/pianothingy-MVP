@@ -1,5 +1,5 @@
 // implement variations on var notes and pass those values through a convertor.
-// The convertor will change the format and pass the vlaue to var main.
+// The convertor will change the format and pass the vlaue to var main. 
 
 var read = [],
     i,
@@ -13,15 +13,15 @@ if (keyPress[0]) {
     console.log('registered');
 }
 
-// read the rendered notes
+// read the rendered notes 
 // for (i = 0; i < notesBar1.length; i++) {
 //     if (notesBar1[i].noteType === "n") {
 //         // TODO come bakc here and fix the problems with accidentals being interpreted
-
+        
 //         // if (notesBar1[i].keyProps[i].accidental === null) {
 //         //     read.push(notesBar1[i].keys);
 //         // };
-
+        
 //     };
 // };
 console.log('read: ',read);

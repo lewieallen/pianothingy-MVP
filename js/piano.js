@@ -226,7 +226,7 @@ function buildPiano() {
             'class': 'key' + blackKeyClass(i),
             'data-key': i,
             'id': i,
-            mousedown: function(evt) {
+            mousedown: function(evt) { 
                 $keys.trigger('note-'+i+'.play');
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
@@ -236,7 +236,7 @@ function buildPiano() {
                                 parseInt(this.dataset.key)
                             );
                         noteConvert(keyPress.piano);
-                    }
+                    }                
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
                 },
                 mouseup: function(evt) {
@@ -340,8 +340,8 @@ function isModifierKey(evt) {
 }
 
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    this part will really only become important when considering
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+    this part will really only become important when considering 
     laptop users.
     ie. not when using an ipad which is expected main behaviour.
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -349,25 +349,25 @@ function isModifierKey(evt) {
 
 var toStave = {
     0: -12,
-    1: -11,
+    1: -11, 
     2: -10,
-    3: -9,
+    3: -9, 
     4: -8,
     5: -7,
-    6: -6,
+    6: -6, 
     7: -5,
-    8: -4,
+    8: -4, 
     9: -3,
-    10: -2,
+    10: -2, 
     11: -1,
     12: 0,
-    13: 1,
+    13: 1, 
     14: 2,
-    15: 3,
+    15: 3, 
     16: 4,
     16: 5,
     17: 6,
-    18: 7,
+    18: 7, 
     19: 8
 }
 
@@ -399,7 +399,7 @@ $(window).keydown(function(evt) {
             );
         noteConvert(keyPress.piano);
     }
-
+    
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 
@@ -418,8 +418,6 @@ $(window).keydown(function(evt) {
 
 
 });
-
-
 
 
 //
@@ -515,9 +513,9 @@ function demo(data) {
         cfg.notesOffset !== undefined && (notesOffset = cfg.notesOffset);
         $keys.one('build-done.piano', function() {
             //NOTE - jQuery.map flattens arrays
-            var i = 0,
-                song = $.map(data, function(x, i) {
-                    return i == 0 ? null : [x];
+            var i = 0, 
+                song = $.map(data, function(x, i) { 
+                    return i == 0 ? null : [x]; 
                 });
             (function play() {
                 if (!demoing) return;
@@ -545,7 +543,7 @@ function demoHandler(evt) {
             window.clearTimeout(demoingTimeout);
             $keys.unbind('build-done.piano');
             addToStave = true;
-        } else {
+        } else {    
             demo(chopsticks());
             addToStave = false;
         }
