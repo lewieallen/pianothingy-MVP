@@ -3,6 +3,6 @@
 
 MVP for piano notation app.
 
-http://lewieallen.github.io/pianothingy-MVP/
+<a href="http://lewieallen.github.io/pianothingy-MVP/" target="_blank">MVP</a>
 
 *All dependencies included*
