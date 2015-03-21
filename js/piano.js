@@ -65,8 +65,6 @@ function conversion(val, acc) {
 
 function noteConvert(a) {
     for (var i = 0; i < a.length; i++) {
-        console.log('array value: ', a[i]);
-        console.log('typeof: ', typeof(a[i]));
         switch (a[i].toString()) {
             case "-12":
                 conversion("c/4", false);
@@ -275,32 +273,32 @@ function camelToText(x) {
     return x.charAt(0).toUpperCase() + x.substring(1);
 }
 
-$.each(['volume', 'style'], function(i, setting) {
-    var $opts = $('<div>', {
-        'class': 'opts',
-        html: '<p><strong>' + camelToText(setting) + ':</strong></p>'
-    }).appendTo('#synth-settings');
+// $.each(['volume', 'style'], function(i, setting) {
+//     var $opts = $('<div>', {
+//         'class': 'opts',
+//         html: '<p><strong>' + camelToText(setting) + ':</strong></p>'
+//     }).appendTo('#synth-settings');
 
-    $.each(DataGenerator[setting], function(name, fn) {
-        if (name != 'default') {
-            $('<p>')
-                .append($('<a>', {
-                    text: camelToText(name),
-                    href: '#',
-                    'class': fn === DataGenerator[setting].default ? 'selected' : '',
-                    click: function(evt) {
-                        evt.preventDefault();
-                        DataGenerator[setting].default = fn;
-                        buildPiano();
-                        var $this = $(this);
-                        $this.closest('.opts').find('.selected').removeClass('selected');
-                        $this.addClass('selected');
-                    }
-                }))
-                .appendTo($opts);
-        }
-    });
-});
+//     $.each(DataGenerator[setting], function(name, fn) {
+//         if (name != 'default') {
+//             $('<p>')
+//                 .append($('<a>', {
+//                     text: camelToText(name),
+//                     href: '#',
+//                     'class': fn === DataGenerator[setting].default ? 'selected' : '',
+//                     click: function(evt) {
+//                         evt.preventDefault();
+//                         DataGenerator[setting].default = fn;
+//                         buildPiano();
+//                         var $this = $(this);
+//                         $this.closest('.opts').find('.selected').removeClass('selected');
+//                         $this.addClass('selected');
+//                     }
+//                 }))
+//                 .appendTo($opts);
+//         }
+//     });
+// });
 
 
 //
@@ -407,7 +405,6 @@ $(window).keydown(function(evt) {
 
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
     if (addToStave) {
-        console.log("and released");
         keyPress.piano.splice(keyPress.piano.indexOf(key), 1);
     }
 
@@ -503,7 +500,6 @@ function chopsticks() {
 var demoing = false, demoingTimeout;
 
 function demo(data) {
-    console.log('*demo called*');
     var cfg = data[0];
     if (!buildingPiano && !demoing) {
         demoing = true;
