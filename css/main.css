@@ -80,7 +80,7 @@ canvas {
       -ms-user-select: none;
           user-select: none;
   background-image: none;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   border-radius: 4px;
 }
 
@@ -93,8 +93,4 @@ canvas {
   font-size: 18px;
   line-height: 1.3333333;
   border-radius: 6px;
-}
-
-.play:hover {
-  cursor: pointer;
 }
